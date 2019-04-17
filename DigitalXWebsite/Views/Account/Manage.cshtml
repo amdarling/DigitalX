@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DigitalXWebsite.ServiceReference.Order>
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<h2>Manage</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Order ID")
+        </th>
+        <th>
+            @Html.DisplayName("Order Date")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Complete)
+        </th>
+        <th>
+            @Html.DisplayName("Back Order")
+        </th>
+        <th>
+            @Html.DisplayName("Total")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Complete)
+        </td>
+        <td>
+            @{
+                if (ViewBag.IsBackOrder == false)
+                {
+                    <input type="checkbox" name="res" class="chkres" disabled="disabled" />
+                }
+                else
+                {
+                    <input type="checkbox" id="" name="res" class="chkres" checked disabled="disabled" />
+                }
+            }
+        </td>
+        <td>
+            @Html.Action("CalculateTotal")
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.OrderID, @class = "my-links" })
+        </td>
+    </tr>
+}
+
+</table>

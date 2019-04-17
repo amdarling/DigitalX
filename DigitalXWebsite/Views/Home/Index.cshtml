@@ -1,0 +1,67 @@
+﻿@model IEnumerable<DigitalXWebsite.ServiceReference.Product>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Digital X</h1>
+
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>*@
+
+<div id="slideshow-progress-bar-container">
+    <div id="slideshow-progress-bar"></div>
+</div>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+
+    <div class="carousel-inner">
+        @foreach (var product in Model)
+        {
+            <div class="item" style="text-align: center">
+                <img src="@Url.Action("GetImage", "home", new { id = product.ProductID })" width="200" height="250" />
+                <div class="carousel-caption">
+                    <h4>@Html.DisplayFor(modelItem => product.ProductName)</h4>
+                    <p>@Html.DisplayFor(modelItem => product.ProductDescription)</p>
+                    <p>$@Html.DisplayFor(modelItem => product.Price)</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    jQuery(document).ready(function () {
+        jQuery('.carousel-inner').find('.item:first').addClass('active');
+    });
+</script>
+
+@*<div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@

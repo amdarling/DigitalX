@@ -1,0 +1,92 @@
+﻿@model DigitalXWebsite.ServiceReference.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            $@Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Product Description")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Product Name")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Retailer")
+        </dt>
+
+        <dd>
+            @Html.Action("Retailer", new { id = Model.RetailerID })
+        </dd>
+        <dt>
+            @Html.DisplayName("Category")
+        </dt>
+
+        <dd>
+            @Html.Action("Category", new { id = Model.SubCategoryID })
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Subcategory")
+        </dt>
+
+        <dd>
+            @Html.Action("SubCategory", new { id = Model.SubCategoryID })
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Units In Stock")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => Model.UnitsInStock)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Picture")
+        </dt>
+
+        <dd>
+            <img src="@Url.Action("GetImage", "home", new { id = Model.ProductID })" width="200" height="250" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div id="addtoorder">
+        @Ajax.ActionLink("Add to Cart", "AddOrderDetail", "Product",
+        new { id = Model.ProductID },
+        new AjaxOptions { UpdateTargetId = "addtoorder", HttpMethod = "GET", InsertionMode = InsertionMode.Replace })
+    </div>
+
+    @{ 
+        var pageNumber = Convert.ToInt32(Session["PageNumber"]);
+    }
+    @Html.ActionLink("Back to List", "Index", new {page = pageNumber, currentFilter = ViewBag.CurrentFilter })
+</p>

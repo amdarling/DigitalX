@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DigitalXWebsite.ServiceReference.OrderDetail>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Detail ID")
+        </th>
+        <th>
+            @Html.DisplayName("Order ID")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Packaged)
+        </th>
+        <th>
+            @Html.DisplayName("Packaged By")
+        </th>
+        <th>
+            @Html.DisplayName("Product ID")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DetailID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Packaged)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PackagedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+    </tr>
+}
+
+</table>

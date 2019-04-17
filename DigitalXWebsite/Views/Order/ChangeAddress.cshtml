@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DigitalXWebsite.ServiceReference.Address>
+
+@{
+    ViewBag.Title = "ChangeAddress";
+}
+
+<h2>ChangeAddress</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Address Type")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Suburb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th>
+            @Html.DisplayName("Postal Code")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddressType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Suburb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostalCode)
+        </td>
+        @using (Html.BeginForm(new { add = item.AddressID }))
+        {
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Change" class="btn btn-default" />
+                    </div>
+                </div>
+            </td>
+        }
+
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Cancel", "Checkout", new { quantity = new List<int>(), @class = "my-links" })
+</div>

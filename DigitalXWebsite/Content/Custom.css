@@ -1,0 +1,142 @@
+﻿#myCarousel {
+    background-color: #fcb21b;
+}
+
+body {
+    padding-top: 100px;
+}
+
+.navbar-inverse {
+    background-color: #000000;
+    border-color: #e4955d;
+}
+
+#title {
+    display: inline;
+    padding-top: 30px;
+    color: #fece00;
+}
+
+tr:nth-child(even) {
+    background-color: #fff7e8;
+}
+
+.navbar-nav > li {
+    padding-top: 20px;
+}
+
+.form-control:focus {
+    border-color: #FFA32A;
+}
+
+a.my-links {
+    color: #FFA32A;
+}
+a.my-links:visited {
+    color: #FFA32A;
+}
+
+a.my-links:hover {
+    color: #FFA32A;
+}
+
+a {
+color: #FFA32A;
+}
+
+a:visited {
+    color: #FFA32A;
+}
+
+a:hover {
+    color: #FFA32A;
+}
+
+#cancel-button{
+    margin-left: 115px;
+}
+
+.navbar-inverse {
+background-color: #ffffff;
+border-color: #ffffff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fcb21b;
+}
+
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+    color: #fece00;
+}
+
+.navbar-inverse .navbar-text {
+    color: #fcb21b;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fcb21b;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    color: #fece00;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fece00;
+    background-color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fece00;
+    background-color: #ffffff;
+}
+
+.navbar-inverse .navbar-toggle {
+    border-color: #ffffff;
+}
+
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+    background-color: #ffffff;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+    background-color: #fcb21b;
+}
+
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+    border-color: #fcb21b;
+}
+
+.navbar-inverse .navbar-link {
+    color: #fcb21b;
+}
+
+    .navbar-inverse .navbar-link:hover {
+        color: #fece00;
+    }
+
+@media (max-width: 767px) {
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #fcb21b;
+}
+
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #fece00;
+    }
+
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #fece00;
+    background-color: #ffffff;
+}
+}

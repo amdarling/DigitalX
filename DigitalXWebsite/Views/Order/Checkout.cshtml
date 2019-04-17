@@ -1,0 +1,43 @@
+﻿@model DigitalXWebsite.ServiceReference.Order
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dd>
+            @Html.Action("PartialAddress")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+
+    </dl>
+</div>
+@Html.Action("PartialOrderDetails", new { inStock = true })
+@if (Session["BackOrderDetails"] != null)
+{
+    <h4>Back Order</h4>
+    @Html.Action("PartialOrderDetails", new { inStock = false })
+}
+
+<input type="button" value="Checkout" class="btn btn-default" onclick="location.href='@Url.Action("Create", "Order")'" />

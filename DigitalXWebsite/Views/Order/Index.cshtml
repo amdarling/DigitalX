@@ -1,0 +1,85 @@
+﻿@model IEnumerable<DigitalXWebsite.ServiceReference.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>Index</h2>
+
+@if (ViewBag.Message != null)
+{
+    <h3>@ViewBag.Message</h3>
+}
+@if (Session["BackOrder"] != null)
+{
+    @Html.Partial("BackOrder")
+    ViewBag.Q = 1;
+}
+
+@using (Html.BeginForm("Checkout", "Order"))
+{
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Product")
+            </th>
+            <th>
+                @Html.DisplayName("Description")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitsInStock)
+            </th>
+            <th>
+                @Html.DisplayName("Quantity")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+        @{int i = 0;}
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitsInStock)
+                </td>
+                <th>
+                    @{var q = Session["Quantity"] as List<int>; }
+                    @Html.TextBox("Quantity", null, new { @type = "number", @data_val_number = "Please enter a number", @data_val = "true", @Value = q[i] })
+                    @Html.ValidationMessage("Quantity")
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Product", new { id = item.ProductID, @class = "my-links" }, null) |
+                    @Html.ActionLink("Remove", "Remove", new { id = item.ProductID, @class = "my-links" })
+                </td>
+            </tr>
+            i++;
+        }
+
+    </table>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="Return to Shopping" onclick="location.href='@Url.Action("Index", "Home")'" class="btn btn-default" />
+            <input type="submit" value="Checkout" class="btn btn-default" @{ if (ViewBag.Message != null) { @: disabled="disabled"
+                   } } />
+        </div>
+    </div>
+    <br />
+}
+
+<br />

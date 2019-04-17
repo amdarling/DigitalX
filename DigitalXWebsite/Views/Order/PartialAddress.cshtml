@@ -1,0 +1,68 @@
+﻿@model DigitalXWebsite.ServiceReference.Address
+
+@if (Model != null)
+{
+<div>
+    <h4>Address</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Address Type")
+        </dt>
+
+        <dd>
+            @ViewBag.Type
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Suburb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Suburb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Postal Code")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostalCode)
+        </dd>
+
+    </dl>
+</div>
+}
+else
+{
+    <p>There is no address linked to this account. Plese add a new address</p>
+}
+<p>
+    @*@Html.ActionLink("Edit Address", "EditAddress")|*@
+    @Html.ActionLink("Add New Address", "CreateAddress", null, new { @class = "my-links" }) |
+    @Html.ActionLink("Change Shipping Address", "ChangeAddress", null, new { @class = "my-links" })
+</p>
