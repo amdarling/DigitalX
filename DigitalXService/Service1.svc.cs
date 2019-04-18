@@ -52,10 +52,7 @@ namespace DigitalXService
                         bool newItem = true;
                         for (int ix = 0; ix < DetailList.Count && ind < products1.Count; ix++)
                         {
-                            if (products1[ind].ProductID != DetailList[ix].ProductID)
-                            {
-                            }
-                            else
+                            if (products1[ind].ProductID == DetailList[ix].ProductID)
                             {
                                 quantity = products1[ind].Quantity + DetailList[ix].Quantity;
                                 DetailList[ix].Quantity = quantity;
