@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -24,48 +24,71 @@ namespace DigitalXService
             List<Product> ProductList = new List<Product>();
             List<OrderDetail> DetailList = new List<OrderDetail>();
             int quantity;
+            int ind;
             using (var db2 = new DigitalXDBEntities())
             {
-                    var products1 = (from od in db2.OrderDetails select od).ToList();
-                for (int ind = 0; ind < products1.Count; ind++)
+            var products1 = (from od in db2.OrderDetails select od).ToList();
+                ind = 0;
+                int amount = products1.Count;
+                for (int i = 0; i < amount; i++)
                 {
-                    for (int i = 0; i < products1.Count; i++)
+                    int index = 1;
+                    if (products1.Count == 1)
                     {
-                        if (ind != i)
+                        var pr = new OrderDetail();
+                        pr.ProductID = 15;
+                        products1.Add(pr);
+                    }
+                    if (products1[ind].ProductID == products1[index].ProductID)
+                    {
+                        quantity = products1[ind].Quantity + products1[index].Quantity;
+                        var prod = products1.Where(p => p.ProductID == products1[ind].ProductID).Select(p => p).FirstOrDefault();
+                        prod.Quantity = quantity;
+                        DetailList.Add(prod);
+                        products1.RemoveAt(ind);
+                    }
+                    else 
+                    {
+                        bool newItem = true;
+                        for (int ix = 0; ix < DetailList.Count && ind < products1.Count; ix++)
                         {
-                            if (products1[ind].ProductID == products1[i].ProductID)
+                            if (products1[ind].ProductID != DetailList[ix].ProductID)
                             {
-                                quantity = products1[ind].Quantity + products1[i].Quantity;
-                                var prod = products1.Where(p => p.ProductID == products1[ind].ProductID).Select(p => p).FirstOrDefault();
-                                prod.Quantity = quantity;
-                                DetailList.Add(prod);
-                                products1.RemoveAt(i);
                             }
                             else
                             {
-                                for (int ix = 0; ix < DetailList.Count && ind < products1.Count; ix++)
-                                {
-                                    if (products1[ind].ProductID != DetailList[ix].ProductID)
-                                    {
-                                        DetailList.Add(products1[ind]);
-                                        products1.RemoveAt(ind);
-                                    }
-                                }
-                                if (DetailList.Count == 0)
-                                {
-                                    DetailList.Add(products1[ind]);
-                                    products1.RemoveAt(ind);
-                                }
+                                quantity = products1[ind].Quantity + DetailList[ix].Quantity;
+                                DetailList[ix].Quantity = quantity;
+
+                                newItem = false;
                             }
+                        }
+                        if (newItem)
+                        {
+                            DetailList.Add(products1[ind]);
+                            products1.RemoveAt(ind);
+                        }
+                        else if (DetailList.Count == 0)
+                        {
+                            DetailList.Add(products1[ind]);
+                            products1.RemoveAt(ind);
+                        }
+                        else
+                        {
+                            products1.RemoveAt(ind);
+                        }
+                        if (DetailList.Count == 0)
+                        {
+                            DetailList.Add(products1[ind]);
+                            products1.RemoveAt(ind);
                         }
                     }
                 }
+               
             }
 
-            //var products1 = db.OrderDetails.Where(od => od.Quantity != 0).Select(od => od).ToList();
-            var products = (from p in /*db.OrderDetails*/DetailList orderby p.Quantity descending select p.ProductID).Take(5);
+            var products = (from p in DetailList orderby p.Quantity descending select p.ProductID).Take(5);
 
-            //var products = (from p in db.OrderDetails orderby p.Quantity descending select p.ProductID).Take(5);
             foreach (var product in products)
             {
 
