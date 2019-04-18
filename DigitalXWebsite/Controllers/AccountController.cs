@@ -19,6 +19,7 @@ namespace DigitalXWebsite.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public ActionResult Login(string username, string password, string ReturnUrl)
         {
@@ -84,6 +85,7 @@ namespace DigitalXWebsite.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public ActionResult Register([Bind(Include = "FirstName,LastName,Username,Password")] ServiceReference.Customer cust, [Bind(Include = "AddressType,City,Country,PostalCode,Street,Suburb")] ServiceReference.Address add, [Bind(Include = "ContactType,Contact1")] ServiceReference.Contact cont)
         {
